@@ -1,0 +1,28 @@
+# ═══════════════════════════════════════════════
+# HidroLog Amazônia — GitHub Pages Configuration
+# ═══════════════════════════════════════════════
+
+# Título e descrição do site
+title: "HidroLog Amazônia"
+description: "Logística Hidroviária Inteligente para o Amazonas"
+url: ""  # Deixe vazio; será preenchido automaticamente pelo GitHub Pages
+
+# Desabilita o processamento Jekyll para arquivos com underscore
+# e para evitar conflitos com assets
+exclude:
+  - README.md
+  - "*.sh"
+
+# Permite que arquivos com underscore sejam servidos corretamente
+include:
+  - _headers
+
+# Configurações de Jekyll (mínimas — o site é estático puro)
+markdown: kramdown
+highlighter: rouge
+
+# Permalink padrão para páginas
+permalink: pretty
+
+# Tema — sem tema (site totalmente customizado)
+theme: null

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HidroLog Amazônia</title>
+  <!--
+    Técnica de SPA redirect para GitHub Pages.
+    Quando o usuário acessa uma URL direta (ex: /servicos),
+    o GitHub Pages serve este 404.html. Ele redireciona para
+    index.html preservando a rota via sessionStorage.
+    Referência: https://github.com/rafgraph/spa-github-pages
+  -->
+  <script>
+    // Captura o path/query e redireciona para index.html
+    var l = window.location;
+    var path = l.pathname;
+    // Determina se estamos em subpasta (repo page) ou root (user/org page)
+    var repoSegments = path.split('/').filter(Boolean);
+    // Salva a página desejada para restaurar após o redirect
+    var targetPage = '';
+    if (repoSegments.length > 0) {
+      // Tenta identificar se é uma rota de página conhecida
+      var known = ['servicos', 'cobertura', 'tecnologia', 'sobre', 'contato'];
+      var last = repoSegments[repoSegments.length - 1];
+      if (known.indexOf(last) !== -1) {
+        targetPage = last;
+      }
+    }
+    sessionStorage.setItem('ghpages_redirect_page', targetPage || 'home');
+    // Redireciona para a raiz do site
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + (l.hostname === 'localhost' ? 0 : 1)).join('/') +
+      '/?redirect=1'
+    );
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/">
+  </noscript>
+</head>
+<body>
+  <p style="font-family:sans-serif;text-align:center;margin-top:100px;color:#4A6A60">
+    Redirecionando para <a href="/" style="color:#3ECFA0">HidroLog Amazônia</a>...
+  </p>
+</body>
+</html>
